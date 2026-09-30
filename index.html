@@ -152,6 +152,49 @@ section::before{content:'';position:absolute;top:-1px;left:0;right:0;height:140p
 .cin-content h2{font-size:clamp(2.4rem,7vw,5.5rem);text-shadow:0 4px 24px rgba(0,0,0,.55),0 2px 8px rgba(0,0,0,.4)}
 @media(max-width:768px){.cin-content{padding:28px 20px}.cin-content .label{white-space:nowrap;font-size:.56rem;letter-spacing:.15em;padding:6px 12px}}
 
+/* ===== CHAMPIONS — trophy moment ===== */
+.champ{position:relative;z-index:2;height:100vh;min-height:620px;padding:0;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+.champ::before{display:none}
+.champ-media{position:absolute;inset:0;overflow:hidden;background:var(--dk)}
+.champ-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;transform-origin:center 35%;will-change:transform}
+.champ-ov{position:absolute;inset:0;background:
+  linear-gradient(to bottom,var(--dk) 0%,rgba(7,7,7,.15) 14%,rgba(7,7,7,.1) 30%,rgba(7,7,7,.62) 48%,rgba(7,7,7,.9) 68%,var(--dk) 100%),
+  radial-gradient(ellipse 90% 70% at 50% 40%,transparent 40%,rgba(7,7,7,.55) 100%)}
+.champ-rays{position:absolute;left:50%;bottom:-30%;width:140vmax;height:140vmax;transform:translateX(-50%);pointer-events:none;opacity:.5;
+  background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(204,255,0,.07) 0deg 4deg,transparent 4deg 16deg);
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 0%,transparent 55%);mask-image:radial-gradient(circle at 50% 50%,#000 0%,transparent 55%);animation:raySpin 60s linear infinite}
+@keyframes raySpin{to{transform:translateX(-50%) rotate(360deg)}}
+.champ-content{position:relative;z-index:3;text-align:center;padding:0 24px clamp(56px,9vh,110px);width:100%}
+.champ-kicker{display:flex;align-items:center;justify-content:center;gap:18px;font-family:'Barlow Condensed';font-weight:600;text-transform:uppercase;letter-spacing:.38em;font-size:clamp(.72rem,1.1vw,.95rem);color:var(--lt)}
+.champ-kicker .kl{width:clamp(40px,8vw,110px);height:1px;background:linear-gradient(to right,transparent,var(--g))}
+.champ-logo{position:relative;display:inline-block;height:clamp(150px,23vh,240px);margin:0 auto clamp(36px,6vh,64px)}
+.champ-logo::before{content:'';position:absolute;left:50%;top:45%;width:230%;height:170%;transform:translate(-50%,-50%);background:radial-gradient(ellipse at center,rgba(7,7,7,.88) 0%,rgba(7,7,7,.6) 40%,transparent 70%);z-index:-1;pointer-events:none}
+.champ-logo img{height:100%;width:auto;display:block;filter:drop-shadow(0 6px 22px rgba(0,0,0,.7)) drop-shadow(0 0 26px rgba(255,255,255,.12))}
+.champ-logo .glint{position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 38%,rgba(204,255,0,.55) 50%,transparent 62%);background-size:260% 100%;background-position:120% 0;
+  -webkit-mask:url(public/logos/league.png) center/contain no-repeat;mask:url(public/logos/league.png) center/contain no-repeat}
+.champ-logo.shine .glint{animation:logoGlint 5s ease-in-out infinite}
+@keyframes logoGlint{0%,50%{background-position:120% 0}80%,100%{background-position:-20% 0}}
+.champ-kicker .kt{font-family:'Bebas Neue';font-size:clamp(1.3rem,2vw,1.8rem);letter-spacing:.14em;font-weight:400;color:var(--lt)}
+.champ-kicker .kl:last-child{background:linear-gradient(to left,transparent,var(--g))}
+.us-flag{position:relative;display:flex;width:clamp(44px,4vw,60px);aspect-ratio:1.9;filter:drop-shadow(0 4px 14px rgba(0,0,0,.6))}
+.us-flag i{flex:1;height:100%;background:url(public/flags/us-flag.svg) no-repeat;animation:flagWave 2.2s ease-in-out infinite;position:relative}
+.us-flag i::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.28);opacity:0;animation:flagShade 2.2s ease-in-out infinite;animation-delay:inherit}
+@keyframes flagWave{0%,100%{transform:translateY(calc(var(--a,2px)*-1))}50%{transform:translateY(var(--a,2px))}}
+@keyframes flagShade{0%,100%{opacity:0}50%{opacity:1}}
+@media(max-width:768px){.us-flag{width:48px}}
+.champ-big{font-family:'Bebas Neue';font-size:clamp(4rem,14vw,12.5rem);line-height:.86;margin:14px 0 18px;letter-spacing:.01em;white-space:nowrap;
+  background:linear-gradient(100deg,var(--g) 0%,var(--g) 40%,#f6ffc9 50%,var(--g) 60%,var(--g) 100%);background-size:250% 100%;background-position:100% 0;
+  -webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 40px rgba(204,255,0,.35)) drop-shadow(0 6px 30px rgba(0,0,0,.6))}
+.champ-big.shine{animation:champShine 5s ease-in-out infinite}
+@keyframes champShine{0%,55%{background-position:100% 0}85%,100%{background-position:0% 0}}
+.champ-h2{font-size:clamp(1.5rem,3.4vw,2.8rem);color:var(--lt);text-shadow:0 4px 24px rgba(0,0,0,.6)}
+@media(max-width:768px){
+  .champ{height:88vh;min-height:520px}
+  .champ-img{object-position:center 20%}
+  .champ-kicker{gap:10px;letter-spacing:.22em}
+  .champ-big{font-size:17vw}
+}
+
 /* ===== VISION ===== */
 .vision{background:var(--dk2);padding:130px 0}
 .vision h2{font-size:clamp(2.4rem,6vw,5rem);margin-top:16px}
@@ -473,15 +516,17 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
 </section>
 
 <!-- ===== CHAMPIONS MOMENT ===== -->
-<section class="cin-break" id="champBreak">
-  <div class="cin-imgwrap">
-    <img class="cin-bg" src="public/images/champions.png" alt="" aria-hidden="true" loading="lazy">
-    <img class="cin-fg" src="public/images/champions.png" alt="BISA U15 Champions" loading="lazy">
-  </div>
-  <div class="cin-ov"></div>
-  <div class="cin-content">
-    <div class="label" style="opacity:0">U15 President's Cup · State Champions</div>
-    <h2 style="margin-top:16px"><span class="lh"><span>The Next Generation</span></span><span class="lh"><span>Is Already <em>Winning.</em></span></span></h2>
+<section class="champ" id="champBreak">
+  <div class="champ-media"><img class="champ-img" src="public/images/champions.png" alt="BISA — U15 President's Cup State Champions" loading="lazy"></div>
+  <div class="champ-ov"></div>
+  <div class="champ-rays" aria-hidden="true"></div>
+  <div class="champ-content">
+    <div class="champ-logo"><img src="public/logos/league.png" alt="US Youth Soccer Presidents Cup"><span class="glint" aria-hidden="true"></span></div>
+    <div class="champ-kicker">
+      <span class="kl"></span><span class="us-flag" role="img" aria-label="United States flag"></span><span class="kt">U15</span><span class="kl"></span>
+    </div>
+    <div class="champ-big" aria-label="State Champions">State Champions</div>
+    <h2 class="champ-h2"><span class="lh"><span>The Next Generation Is Already <em>Winning.</em></span></span></h2>
   </div>
 </section>
 
@@ -753,6 +798,18 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
 </section>
 
 <script>
+/* ===== WAVING US FLAG (pure CSS slices; works without animation libs) ===== */
+document.querySelectorAll('.us-flag').forEach(f=>{
+  const n=22;
+  for(let k=0;k<n;k++){
+    const s=document.createElement('i');
+    s.style.backgroundSize=(n*100)+'% 100%';
+    s.style.backgroundPosition=(k/(n-1)*100)+'% 0';
+    s.style.animationDelay=(-k*.09)+'s';
+    s.style.setProperty('--a',(.4+k/(n-1)*2.8).toFixed(2)+'px');
+    f.appendChild(s);
+  }
+});
 /* ===== SAFETY NET: if animation libs fail, show all content statically ===== */
 if(typeof gsap==='undefined'||typeof ScrollTrigger==='undefined'){
   document.documentElement.classList.add('no-anim');
@@ -876,6 +933,27 @@ gsap.utils.toArray('.cin-break').forEach(sec=>{
   gsap.utils.toArray(sec.querySelectorAll('.cin-content h2 .lh>span')).forEach((el,i)=>{gsap.to(el,{y:0,duration:1.1,delay:i*.12,ease:'power4.out',scrollTrigger:{trigger:sec,start:'top 60%',once:true}});});
   gsap.to(sec.querySelector('.cin-content'),{yPercent:-10,ease:'none',scrollTrigger:{trigger:sec,start:'top bottom',end:'bottom top',scrub:1.5}});
 });
+
+/* CHAMPIONS — trophy moment */
+(function(){
+  const sec=document.getElementById('champBreak');if(!sec)return;
+  const img=sec.querySelector('.champ-img'),logo=sec.querySelector('.champ-logo');
+  const big=sec.querySelector('.champ-big'),kls=sec.querySelectorAll('.champ-kicker .kl'),kick=sec.querySelectorAll('.champ-kicker .kt,.champ-kicker .us-flag');
+  gsap.fromTo(img,{scale:1.18},{scale:1,ease:'none',scrollTrigger:{trigger:sec,start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.set(logo,{opacity:0,y:30,scale:.86,filter:'blur(10px)'});
+  gsap.set(kls,{scaleX:0});gsap.set(kls[0],{transformOrigin:'100% 50%'});gsap.set(kls[1],{transformOrigin:'0% 50%'});
+  gsap.set(kick,{opacity:0,y:10});
+  gsap.set(big,{clipPath:'inset(0 50% 0 50%)',scale:1.08});
+  const tl=gsap.timeline({paused:true});
+  tl.to(logo,{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:1.2,ease:'power3.out'})
+    .add(()=>logo.classList.add('shine'),.9)
+    .to(kls,{scaleX:1,duration:.8,ease:'power3.out'},.5)
+    .to(kick,{opacity:1,y:0,duration:.6,stagger:.1,ease:'power2.out'},.6)
+    .to(big,{clipPath:'inset(0 0% 0 0%)',scale:1,duration:1.2,ease:'power4.out'},.8)
+    .to(sec.querySelectorAll('.champ-h2 .lh>span'),{y:0,duration:1,ease:'power4.out'},1.3)
+    .add(()=>big.classList.add('shine'),2);
+  ScrollTrigger.create({trigger:sec,start:'top 45%',once:true,onEnter:()=>tl.play()});
+})();
 
 /* VISION */
 revealSection('visLabel','.vision h2');
