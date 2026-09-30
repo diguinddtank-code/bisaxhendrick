@@ -4,18 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BISA × Hendrick Automotive Group — Partnership Proposal</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+<link href="public/fonts.css" rel="stylesheet">
+<script src="public/vendor/gsap.min.js"></script>
+<script src="public/vendor/ScrollTrigger.min.js"></script>
+<script src="public/vendor/lenis.min.js"></script>
 <style>
-:root{--g:#CCFF00;--dk:#070707;--dk2:#0c0c0c;--lt:#F5F5F0;--mute:rgba(245,245,240,.55)}
+:root{--g:#CCFF00;--dk:#070707;--dk2:#0c0c0c;--lt:#F5F5F0;--mute:rgba(245,245,240,.7)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{background:var(--dk);overflow-x:hidden}
 body{background:var(--dk);color:var(--lt);font-family:'Barlow',sans-serif;overflow-x:hidden}
-@media(hover:hover) and (pointer:fine){body{cursor:none}body a,body button{cursor:none}}
+html{scroll-padding-top:70px}
 ::selection{background:var(--g);color:var(--dk)}
 img{display:block;max-width:100%}
 
@@ -31,12 +29,30 @@ img{display:block;max-width:100%}
 .pl-bar-fill{position:absolute;left:0;top:0;height:100%;width:0;background:var(--g);box-shadow:0 0 14px rgba(204,255,0,.6)}
 .pl-count{font-family:'Bebas Neue';font-size:1.05rem;color:var(--g);margin-top:13px;letter-spacing:.12em}
 
-/* ===== CUSTOM CURSOR ===== */
-.cursor{position:fixed;top:0;left:0;width:22px;height:22px;border:1.5px solid var(--g);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s,border-color .3s;display:flex;align-items:center;justify-content:center;mix-blend-mode:difference}
-.cursor.hover{width:62px;height:62px;background:var(--g);border-color:var(--g);mix-blend-mode:normal}
-.cursor-txt{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.1em;font-size:.58rem;color:var(--dk);opacity:0;transition:opacity .3s;white-space:nowrap}
-.cursor.hover .cursor-txt{opacity:1}
-@media(max-width:768px),(pointer:coarse){.cursor{display:none}}
+/* ===== STATIC FALLBACK (no-anim) ===== */
+.no-anim .preloader{display:none}
+.no-anim [style*="opacity:0"],.no-anim .hero-logos,.no-anim .hero-eyebrow,.no-anim .hero .sub,.no-anim .hero-meta,.no-anim .hero-scroll,.no-anim .tnode,.no-anim .tboard-crest,.no-anim .stat-cell,.no-anim .loc-stat,.no-anim .loc-wow *,.no-anim .bm,.no-anim .social-card,.no-anim .sc-area,.no-anim .sc-dot,.no-anim .gcwow,.no-anim .vlab{opacity:1!important;transform:none!important}
+.no-anim .lh>span{transform:none}
+.no-anim .tnode{transform:translate(-50%,-50%)!important}
+.no-anim .tboard-crest{transform:translate(-50%,-50%)!important}
+.no-anim .tconn{stroke-dashoffset:0}
+.no-anim .vstage,.no-anim #vAfter{clip-path:none}
+.no-anim .accent-line{width:120px}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:180;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 32px;transition:background .35s,border-color .35s,padding .35s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(7,7,7,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:rgba(255,255,255,.07);padding:11px 32px}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-brand img{height:28px;object-fit:contain}
+.nav-brand .x{font-family:'Bebas Neue';color:var(--g);font-size:1rem}
+.nav-brand .hend{height:14px;filter:brightness(0) invert(1);opacity:.85}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--mute);text-decoration:none;transition:color .25s}
+.nav-links a:hover,.nav-links a.on{color:var(--g)}
+.nav-cta{font-family:'Bebas Neue';font-size:1rem;letter-spacing:.06em;padding:9px 20px;background:var(--g);color:var(--dk);text-decoration:none;white-space:nowrap;transition:transform .25s,box-shadow .25s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(204,255,0,.3)}
+@media(max-width:1024px){.nav-links{display:none}}
+@media(max-width:768px){.nav,.nav.solid{padding:10px 16px}.nav-brand img{height:24px}.nav-brand .hend{height:12px}}
 
 /* ===== BG LAYERS ===== */
 body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
@@ -61,7 +77,7 @@ background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://ww
 @media(min-width:1920px){.wrap{max-width:1480px;padding:0 72px}}
 @media(max-width:1024px){.wrap{padding:0 40px}}
 @media(max-width:768px){.wrap{padding:0 24px}}
-.label{font-family:'Barlow Condensed';font-weight:500;letter-spacing:.4em;text-transform:uppercase;font-size:.7rem;color:var(--g)}
+.label{font-family:'Barlow Condensed';font-weight:500;letter-spacing:.4em;text-transform:uppercase;font-size:.8rem;color:var(--g)}
 .lh{overflow:hidden;display:block}.lh>span{display:block;transform:translateY(105%)}
 h1,h2{font-family:'Bebas Neue';line-height:.9;font-weight:400}
 em{font-style:normal;color:var(--g)}
@@ -108,7 +124,7 @@ section::before{content:'';position:absolute;top:-1px;left:0;right:0;height:140p
 @keyframes ringPulse{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.9);opacity:0}}
 .tnode-info{margin-top:10px;text-align:center;white-space:nowrap}
 .tnode-n{font-family:'Bebas Neue';font-size:clamp(1.3rem,2.6vw,2rem);color:var(--g);line-height:1;text-shadow:0 0 20px rgba(204,255,0,.2)}
-.tnode-l{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.16em;font-size:.5rem;color:var(--mute);margin-top:3px}
+.tnode-l{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.16em;font-size:.68rem;color:rgba(245,245,240,.7);margin-top:4px}
 .tboard-crest{position:absolute;top:50%;left:50%;z-index:2;opacity:0}
 .tboard-crest img{height:64px;filter:drop-shadow(0 0 20px rgba(204,255,0,.2));animation:crestGlow 4s ease-in-out infinite}
 @keyframes crestGlow{0%,100%{filter:drop-shadow(0 0 15px rgba(204,255,0,.15))}50%{filter:drop-shadow(0 0 35px rgba(204,255,0,.35))}}
@@ -179,6 +195,13 @@ section::before{content:'';position:absolute;top:-1px;left:0;right:0;height:140p
 .big-stat.done .n{animation:statPulse 3s ease-in-out infinite}
 @keyframes statPulse{0%,100%{text-shadow:0 0 60px rgba(204,255,0,.25)}50%{text-shadow:0 0 120px rgba(204,255,0,.5),0 0 200px rgba(204,255,0,.2)}}
 .big-stat .l{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.3em;font-size:.8rem;color:var(--mute);margin-top:14px}
+.aid{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:center;margin:40px 0 20px}
+.aid .big-stat{text-align:left;margin:0}
+.aid .big-stat .n{font-size:clamp(4.2rem,9vw,8.5rem)}
+.aid .big-stat .l{max-width:340px;line-height:1.6}
+.aid .gc{max-width:none;margin:0}
+.aid .gcwow{font-size:clamp(1.6rem,2.4vw,2.3rem)}
+@media(max-width:900px){.aid{grid-template-columns:1fr;gap:36px}.aid .big-stat{text-align:center}.aid .big-stat .l{margin:14px auto 0}}
 .gc{border:1px solid rgba(255,255,255,.08);padding:36px;max-width:700px;margin:0 auto;background:rgba(255,255,255,.012)}
 .gc .gch{color:var(--mute);margin-bottom:24px}
 .gcbars{display:flex;gap:18px;align-items:flex-end;height:240px}
@@ -245,7 +268,38 @@ section::before{content:'';position:absolute;top:-1px;left:0;right:0;height:140p
 .tier::before{content:'';position:absolute;top:0;left:50%;width:0;height:2px;background:var(--g);transition:width .5s cubic-bezier(.16,1,.3,1),left .5s cubic-bezier(.16,1,.3,1);box-shadow:0 0 20px rgba(204,255,0,.4)}
 .tier:hover::before{width:100%;left:0}
 .tier .nm{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.25em;font-size:.76rem;color:var(--g);margin-bottom:14px}
-.tier .pr{font-family:'Bebas Neue';font-size:3.2rem;line-height:1;margin-bottom:24px}.tier.feat .pr{color:var(--g)}
+.tier .pr{font-family:'Bebas Neue';font-size:clamp(2rem,3vw,2.5rem);line-height:1;margin-bottom:10px}.tier.feat .pr{color:var(--g)}
+.tier .fit{font-weight:300;font-size:.9rem;line-height:1.5;color:var(--mute);padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid rgba(255,255,255,.08)}
+.tier .badge{position:absolute;top:18px;right:18px;font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.16em;font-size:.62rem;font-weight:600;padding:4px 10px;background:var(--g);color:var(--dk)}
+.tiers-note{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:28px;padding:26px 30px;border:1px dashed rgba(204,255,0,.35);background:rgba(204,255,0,.03)}
+.tiers-note p{font-weight:300;color:rgba(245,245,240,.8);max-width:560px;line-height:1.55}
+.tiers-note p b{font-weight:600;color:var(--lt)}
+.tiers-note .btn{font-size:1.1rem;padding:13px 28px}
+
+/* ===== AT A GLANCE ===== */
+.glance{padding:120px 0 110px}
+.glance h2{font-size:clamp(2.6rem,6.5vw,5.2rem);margin:18px 0 18px}
+.glance-intro{font-weight:300;color:var(--mute);font-size:1.05rem;line-height:1.65;max-width:560px}
+.glance-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;border-top:1px solid rgba(204,255,0,.22);border-left:1px solid rgba(204,255,0,.22)}
+.gl{padding:34px 30px 30px;border-right:1px solid rgba(204,255,0,.22);border-bottom:1px solid rgba(204,255,0,.22);background:rgba(255,255,255,.012)}
+.gl .gl-k{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.22em;font-size:.7rem;color:var(--mute)}
+.gl .gl-n{font-family:'Bebas Neue';font-size:clamp(2.8rem,5vw,4.2rem);color:var(--g);line-height:1;margin:12px 0 10px;text-shadow:0 0 40px rgba(204,255,0,.25)}
+.gl .gl-d{font-weight:300;font-size:.92rem;color:rgba(245,245,240,.75);line-height:1.5}
+.ask{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:34px;margin-top:40px;padding:34px 36px;background:var(--g);color:var(--dk)}
+.ask .ask-k{font-family:'Bebas Neue';font-size:1.8rem;line-height:1;letter-spacing:.02em}
+.ask p{font-weight:500;font-size:1.05rem;line-height:1.55}
+.ask a{font-family:'Bebas Neue';font-size:1.15rem;letter-spacing:.06em;padding:13px 26px;background:var(--dk);color:var(--g);text-decoration:none;white-space:nowrap;transition:transform .25s}
+.ask a:hover{transform:translateY(-2px)}
+@media(max-width:900px){.glance-grid{grid-template-columns:1fr 1fr}.ask{grid-template-columns:1fr;gap:16px;padding:28px 24px}.ask a{justify-self:start}}
+@media(max-width:520px){.glance-grid{grid-template-columns:1fr}.gl{padding:26px 22px}}
+
+/* ===== NEXT STEPS ===== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:980px;margin:0 auto 54px;text-align:left}
+.step{padding:28px 26px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.015)}
+.step .sn{font-family:'Bebas Neue';font-size:2.2rem;color:var(--g);line-height:1}
+.step .st{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.14em;font-size:.95rem;font-weight:600;margin:10px 0 8px}
+.step .sd{font-weight:300;font-size:.9rem;color:var(--mute);line-height:1.5}
+@media(max-width:768px){.steps{grid-template-columns:1fr}}
 .tier ul{list-style:none}
 .tier li{display:flex;gap:11px;font-weight:300;font-size:.92rem;color:rgba(245,245,240,.7);margin-bottom:12px;line-height:1.45}
 .tier li::before{content:'';flex-shrink:0;width:5px;height:5px;margin-top:8px;background:var(--g);border-radius:50%}
@@ -254,7 +308,7 @@ section::before{content:'';position:absolute;top:-1px;left:0;right:0;height:140p
 .cta{text-align:center;padding:180px 0 120px}
 .cta h2{font-size:clamp(2.8rem,8vw,6.5rem);margin:18px 0 24px}
 .cta p{font-weight:300;color:var(--mute);max-width:500px;margin:0 auto 44px;line-height:1.6}
-.btn{position:relative;overflow:hidden;display:inline-block;padding:17px 44px;font-family:'Bebas Neue';font-size:1.35rem;letter-spacing:.06em;text-decoration:none;cursor:none;border:none;transition:transform .3s,box-shadow .3s}
+.btn{position:relative;overflow:hidden;display:inline-block;padding:17px 44px;font-family:'Bebas Neue';font-size:1.35rem;letter-spacing:.06em;text-decoration:none;border:none;transition:transform .3s,box-shadow .3s}
 .btn-g{background:var(--g);color:var(--dk)}.btn-g:hover{transform:translateY(-3px);box-shadow:0 12px 34px rgba(204,255,0,.3)}
 .btn-g::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transform:skewX(-20deg);animation:btnShine 4.5s ease-in-out infinite}
 @keyframes btnShine{0%,72%,100%{left:-100%}32%{left:150%}}
@@ -308,6 +362,7 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
   .vision,.invest{padding:70px 0}
   .impact{padding:64px 0 56px}
   .social{padding:64px 0 56px}
+  .glance{padding:70px 0 64px}
   .cta{padding:90px 0 70px}
 }
 </style>
@@ -318,34 +373,45 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
 <div class="preloader" id="preloader">
   <div class="pl-inner">
     <div class="pl-logos">
-      <img class="pl-bisa" src="https://i.imgur.com/mHzuZgK.png" alt="BISA">
+      <img class="pl-bisa" src="public/logos/bisa.png" alt="BISA">
       <span class="pl-x">×</span>
-      <span class="pl-hend-wrap"><img class="pl-hend" src="https://dka575ofm4ao0.cloudfront.net/pages-transactional_logos/retina/9828/mfnAMWTTAmaioOnAOZzg" alt="Hendrick"></span>
+      <span class="pl-hend-wrap"><img class="pl-hend" src="public/logos/hendrick.png" alt="Hendrick"></span>
     </div>
     <div class="pl-bar"><div class="pl-bar-fill" id="plFill"></div></div>
     <div class="pl-count" id="plCount">0</div>
   </div>
 </div>
 
-<!-- CUSTOM CURSOR -->
-<div class="cursor" id="cursor"><span class="cursor-txt" id="cursorTxt"></span></div>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand" aria-label="Back to top">
+    <img src="public/logos/bisa.png" alt="BISA"><span class="x">×</span><img class="hend" src="public/logos/hendrick.png" alt="Hendrick">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#who">BISA</a></li>
+    <li><a href="#vision">The Complex</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#social">Audience</a></li>
+    <li><a href="#glance">In Numbers</a></li>
+    <li><a href="#invest">Partnership</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Let's Talk</a>
+</nav>
 
 <div class="ambient"><div class="glow g1"></div><div class="glow g2"></div></div>
-<div class="cursor-glow" id="cursorGlow"></div>
-<div class="particles" id="particles"></div>
 <div class="prog" id="prog"></div>
-<div class="sidx" id="sidx"><b>01</b> / 07</div>
+<div class="sidx" id="sidx" style="opacity:0"><b>01</b> / 07</div>
 
 <!-- ===== HERO ===== -->
-<section class="hero" data-idx="1">
+<section class="hero" id="top">
   <div class="hero-bg"><video src="public/hero.mp4" muted autoplay loop playsinline></video><div class="ov"></div></div>
   <div class="watermark wm-right" style="opacity:.025">PARTNERSHIP</div>
   <div class="hero-in">
     <div class="hero-eyebrow">Partnership Proposal · 2026</div>
     <div class="hero-logos">
-      <img class="bisa" src="https://i.imgur.com/mHzuZgK.png" alt="BISA">
+      <img class="bisa" src="public/logos/bisa.png" alt="BISA">
       <span class="x">×</span>
-      <span class="hend-wrap"><img class="hend" src="https://dka575ofm4ao0.cloudfront.net/pages-transactional_logos/retina/9828/mfnAMWTTAmaioOnAOZzg" alt="Hendrick"></span>
+      <span class="hend-wrap"><img class="hend" src="public/logos/hendrick.png" alt="Hendrick"></span>
     </div>
     <h1><span class="lh"><span>A Meaningful</span></span><span class="lh"><span><em>Partnership</em> Begins.</span></span></h1>
     <p class="sub">Building the future of youth soccer in Metro Charleston — and inviting Hendrick Automotive Group to help lead the way.</p>
@@ -359,7 +425,7 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
 </section>
 
 <!-- ===== WHO — tactical board ===== -->
-<section class="who" data-idx="2">
+<section class="who" id="who" data-idx="1">
   <div class="wrap" style="position:relative;z-index:2">
     <div class="label" style="opacity:0;transform:translateX(-30px)" id="whoLabel">01 — What Is BISA?</div>
     <div class="accent-line" id="whoLine"></div>
@@ -394,7 +460,7 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
     <div class="tnode tn-4"><div class="tnode-dot"></div><div class="tnode-ring"></div><div class="tnode-info"><div class="tnode-n" data-count="400" data-suffix="+">0</div><div class="tnode-l">Families</div></div></div>
     <div class="tnode tn-5"><div class="tnode-dot"></div><div class="tnode-ring"></div><div class="tnode-info"><div class="tnode-n" data-count="10">0</div><div class="tnode-l">Countries</div></div></div>
     <div class="tnode tn-6"><div class="tnode-dot"></div><div class="tnode-ring"></div><div class="tnode-info"><div class="tnode-n" data-count="15000" data-suffix="+">0</div><div class="tnode-l">Kids Worldwide</div></div></div>
-    <div class="tboard-crest"><img src="https://i.imgur.com/mHzuZgK.png" alt="BISA"></div>
+    <div class="tboard-crest"><img src="public/logos/bisa.png" alt="BISA"></div>
   </div>
   <div class="who-stats-m">
     <div class="stat-cell"><div class="n" data-count="250" data-suffix="+">0</div><div class="l">Athletes</div></div>
@@ -409,8 +475,8 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
 <!-- ===== CHAMPIONS MOMENT ===== -->
 <section class="cin-break" id="champBreak">
   <div class="cin-imgwrap">
-    <img class="cin-bg" src="https://i.imgur.com/7oZjUU5.png" alt="" aria-hidden="true" loading="lazy">
-    <img class="cin-fg" src="https://i.imgur.com/7oZjUU5.png" alt="BISA U15 Champions" loading="lazy">
+    <img class="cin-bg" src="public/images/champions.png" alt="" aria-hidden="true" loading="lazy">
+    <img class="cin-fg" src="public/images/champions.png" alt="BISA U15 Champions" loading="lazy">
   </div>
   <div class="cin-ov"></div>
   <div class="cin-content">
@@ -420,7 +486,7 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
 </section>
 
 <!-- ===== VISION ===== -->
-<section class="vision" data-idx="3">
+<section class="vision" id="vision" data-idx="2">
   <div class="wrap">
     <div style="text-align:center;margin-bottom:50px">
       <div class="label" style="opacity:0;transform:translateX(-30px)" id="visLabel">02 — What Are We Building?</div>
@@ -448,7 +514,7 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
 </section>
 
 <!-- ===== IMPACT ===== -->
-<section class="impact" data-idx="4">
+<section class="impact" id="impact" data-idx="3">
   <div class="watermark wm-left">IMPACT</div>
   <div class="wrap">
     <div class="label" style="opacity:0;transform:translateX(-30px)" id="impLabel">03 — What Difference Does It Make?</div>
@@ -466,6 +532,7 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
   </div>
 
   <div class="wrap">
+    <div class="aid">
     <div class="big-stat">
       <div class="n" data-count="73610" data-prefix="$" id="bigN">$0</div>
       <div class="l">Total Financial Aid Granted To Young Athletes</div>
@@ -478,6 +545,7 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
         <div class="gcb feat"><div class="gctrack"><div class="gcfill f3" data-h="100"></div></div><div class="gcv" data-count="50153" data-prefix="$">$0</div><div class="gcyr">2025/26</div></div>
       </div>
       <div class="gcwow">7× Growth In Three Seasons.</div>
+    </div>
     </div>
 
     <!-- PROJETO BILU -->
@@ -498,8 +566,8 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
 
   <div class="flag-strip">
     <div class="flag-track">
-      <img src="https://flagcdn.com/w80/br.png" alt="BR" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/us.png" alt="US" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/cu.png" alt="CU" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/sr.png" alt="SR" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/pe.png" alt="PE" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/ht.png" alt="HT" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/pt.png" alt="PT" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/ua.png" alt="UA" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/hn.png" alt="HN" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/bo.png" alt="BO" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/co.png" alt="CO" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/uy.png" alt="UY" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/py.png" alt="PY" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/cr.png" alt="CR" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/sv.png" alt="SV" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/ni.png" alt="NI" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/sn.png" alt="SN" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/mz.png" alt="MZ" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/ao.png" alt="AO" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/gw.png" alt="GW" loading="lazy" decoding="async">
-      <img src="https://flagcdn.com/w80/br.png" alt="BR" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/us.png" alt="US" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/cu.png" alt="CU" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/sr.png" alt="SR" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/pe.png" alt="PE" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/ht.png" alt="HT" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/pt.png" alt="PT" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/ua.png" alt="UA" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/hn.png" alt="HN" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/bo.png" alt="BO" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/co.png" alt="CO" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/uy.png" alt="UY" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/py.png" alt="PY" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/cr.png" alt="CR" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/sv.png" alt="SV" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/ni.png" alt="NI" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/sn.png" alt="SN" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/mz.png" alt="MZ" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/ao.png" alt="AO" loading="lazy" decoding="async"><img src="https://flagcdn.com/w80/gw.png" alt="GW" loading="lazy" decoding="async">
+      <img src="public/flags/br.png" alt="BR" loading="lazy" decoding="async"><img src="public/flags/us.png" alt="US" loading="lazy" decoding="async"><img src="public/flags/cu.png" alt="CU" loading="lazy" decoding="async"><img src="public/flags/sr.png" alt="SR" loading="lazy" decoding="async"><img src="public/flags/pe.png" alt="PE" loading="lazy" decoding="async"><img src="public/flags/ht.png" alt="HT" loading="lazy" decoding="async"><img src="public/flags/pt.png" alt="PT" loading="lazy" decoding="async"><img src="public/flags/ua.png" alt="UA" loading="lazy" decoding="async"><img src="public/flags/hn.png" alt="HN" loading="lazy" decoding="async"><img src="public/flags/bo.png" alt="BO" loading="lazy" decoding="async"><img src="public/flags/co.png" alt="CO" loading="lazy" decoding="async"><img src="public/flags/uy.png" alt="UY" loading="lazy" decoding="async"><img src="public/flags/py.png" alt="PY" loading="lazy" decoding="async"><img src="public/flags/cr.png" alt="CR" loading="lazy" decoding="async"><img src="public/flags/sv.png" alt="SV" loading="lazy" decoding="async"><img src="public/flags/ni.png" alt="NI" loading="lazy" decoding="async"><img src="public/flags/sn.png" alt="SN" loading="lazy" decoding="async"><img src="public/flags/mz.png" alt="MZ" loading="lazy" decoding="async"><img src="public/flags/ao.png" alt="AO" loading="lazy" decoding="async"><img src="public/flags/gw.png" alt="GW" loading="lazy" decoding="async">
+      <img src="public/flags/br.png" alt="BR" loading="lazy" decoding="async"><img src="public/flags/us.png" alt="US" loading="lazy" decoding="async"><img src="public/flags/cu.png" alt="CU" loading="lazy" decoding="async"><img src="public/flags/sr.png" alt="SR" loading="lazy" decoding="async"><img src="public/flags/pe.png" alt="PE" loading="lazy" decoding="async"><img src="public/flags/ht.png" alt="HT" loading="lazy" decoding="async"><img src="public/flags/pt.png" alt="PT" loading="lazy" decoding="async"><img src="public/flags/ua.png" alt="UA" loading="lazy" decoding="async"><img src="public/flags/hn.png" alt="HN" loading="lazy" decoding="async"><img src="public/flags/bo.png" alt="BO" loading="lazy" decoding="async"><img src="public/flags/co.png" alt="CO" loading="lazy" decoding="async"><img src="public/flags/uy.png" alt="UY" loading="lazy" decoding="async"><img src="public/flags/py.png" alt="PY" loading="lazy" decoding="async"><img src="public/flags/cr.png" alt="CR" loading="lazy" decoding="async"><img src="public/flags/sv.png" alt="SV" loading="lazy" decoding="async"><img src="public/flags/ni.png" alt="NI" loading="lazy" decoding="async"><img src="public/flags/sn.png" alt="SN" loading="lazy" decoding="async"><img src="public/flags/mz.png" alt="MZ" loading="lazy" decoding="async"><img src="public/flags/ao.png" alt="AO" loading="lazy" decoding="async"><img src="public/flags/gw.png" alt="GW" loading="lazy" decoding="async">
     </div>
   </div>
 
@@ -514,7 +582,7 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
 </section>
 
 <!-- ===== SOCIAL ===== -->
-<section class="social" data-idx="5">
+<section class="social" id="social" data-idx="4">
   <div class="wrap">
     <div class="label" style="opacity:0;transform:translateX(-30px)" id="socLabel">04 — Growing Beyond The Field</div>
     <div class="accent-line" id="socLine"></div>
@@ -607,6 +675,29 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
   </div>
 </section>
 
+<!-- ===== AT A GLANCE ===== -->
+<section class="glance" id="glance" data-idx="5">
+  <div class="wrap">
+    <div class="label" style="opacity:0;transform:translateX(-30px)" id="glLabel">05 — The Opportunity In Numbers</div>
+    <div class="accent-line" id="glLine"></div>
+    <h2><span class="lh"><span>The Proposal,</span></span><span class="lh"><span><em>In Numbers.</em></span></span></h2>
+    <p class="glance-intro" style="opacity:0;transform:translateY(20px)">Everything that matters, in one view — who you reach, where, and the impact your brand helps create.</p>
+    <div class="glance-grid">
+      <div class="gl"><div class="gl-k">Families Reached</div><div class="gl-n">400+</div><div class="gl-d">Local families engaged with BISA every season.</div></div>
+      <div class="gl"><div class="gl-k">On-Site Visibility</div><div class="gl-n">2,000+</div><div class="gl-d">Weekly impressions at the field.</div></div>
+      <div class="gl"><div class="gl-k">Social Views</div><div class="gl-n">918.6K</div><div class="gl-d">Instagram &amp; Facebook, Aug 2025 – Aug 2026 (▲ 100%).</div></div>
+      <div class="gl"><div class="gl-k">Athletes</div><div class="gl-n">250+</div><div class="gl-d">Players ages 4–18 from 19 nations.</div></div>
+      <div class="gl"><div class="gl-k">Financial Aid Granted</div><div class="gl-n">$73,610</div><div class="gl-d">To young athletes — 7× growth in three seasons.</div></div>
+      <div class="gl"><div class="gl-k">Growing Market</div><div class="gl-n">70K+</div><div class="gl-d">New Metro Charleston residents since 2020.</div></div>
+    </div>
+    <div class="ask" style="opacity:0;transform:translateY(24px)">
+      <div class="ask-k">The Ask</div>
+      <p>Become BISA's partner at the heart of youth soccer in Metro Charleston — with field branding, naming rights and a direct role in opening doors for young athletes.</p>
+      <a href="#invest">See Partnership Options</a>
+    </div>
+  </div>
+</section>
+
 <!-- ===== FIELD MOMENT ===== -->
 <section class="cin-break" id="fieldBreak">
   <div class="cin-imgwrap">
@@ -621,28 +712,37 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
 </section>
 
 <!-- ===== INVEST ===== -->
-<section class="invest" data-idx="6">
+<section class="invest" id="invest" data-idx="6">
   <div class="wrap">
-    <div class="label" style="opacity:0;transform:translateX(-30px)" id="invLabel">05 — What Does It Cost?</div>
+    <div class="label" style="opacity:0;transform:translateX(-30px)" id="invLabel">06 — How Can Hendrick Partner?</div>
     <div class="accent-line" id="invLine"></div>
     <h2><span class="lh"><span>Your Name. Our Field.</span></span><span class="lh"><span><em>Your Legacy.</em></span></span></h2>
-    <p class="ib" style="opacity:0;transform:translateY(30px)">Field-level branding and naming rights at the heart of youth soccer in Metro Charleston.</p>
+    <p class="ib" style="opacity:0;transform:translateY(30px)">Three levels of partnership — from brand presence to full complex naming rights at the heart of youth soccer in Metro Charleston.</p>
     <div class="tiers">
-      <div class="tier"><div class="nm">Community</div><div class="pr">$25K</div><ul><li>Logo on website &amp; social channels</li><li>Event-day recognition</li><li>Season passes for staff</li></ul></div>
-      <div class="tier feat"><div class="nm">Champion</div><div class="pr">$100K</div><ul><li>Field naming rights (1 pitch)</li><li>Logo mowed into the turf</li><li>LED board &amp; jersey placement</li><li>VIP access to all events</li></ul></div>
-      <div class="tier"><div class="nm">Legacy</div><div class="pr">Custom</div><ul><li>Full complex naming rights</li><li>Building &amp; entrance signage</li><li>All-asset branding</li><li>Board seat option</li></ul></div>
+      <div class="tier"><div class="nm">Community</div><div class="pr">Brand Presence</div><p class="fit">Put Hendrick in front of our families online and on event days.</p><ul><li>Logo on website &amp; social channels</li><li>Event-day recognition</li><li>Season passes for staff</li></ul></div>
+      <div class="tier feat"><span class="badge">Most Visible</span><div class="nm">Champion</div><div class="pr">Own A Field</div><p class="fit">Your name on a pitch — 2,000+ weekly impressions on-site.</p><ul><li>Field naming rights (1 pitch)</li><li>Logo mowed into the turf</li><li>LED board &amp; jersey placement</li><li>VIP access to all events</li></ul></div>
+      <div class="tier"><div class="nm">Legacy</div><div class="pr">Name The Complex</div><p class="fit">The Hendrick name on the entire complex, for the long term.</p><ul><li>Full complex naming rights</li><li>Building &amp; entrance signage</li><li>All-asset branding</li><li>Board seat option</li></ul></div>
+    </div>
+    <div class="tiers-note" style="opacity:0;transform:translateY(20px)">
+      <p><b>Every partnership is tailored.</b> We'll build the package around Hendrick's goals and share investment details directly with your team.</p>
+      <a href="mailto:info@bilusoccer.com?subject=BISA%20%C3%97%20Hendrick%20%E2%80%94%20Partnership%20Details" class="btn btn-g">Request Details</a>
     </div>
   </div>
 </section>
 
 <!-- ===== CTA ===== -->
-<section class="cta" data-idx="7">
+<section class="cta" id="contact" data-idx="7">
   <div class="wrap">
-    <div class="label" style="opacity:0">06 — Ready?</div>
+    <div class="label" style="opacity:0">07 — Next Steps</div>
     <h2><span class="lh"><span>Let's Build This</span></span><span class="lh"><span><em>Together.</em></span></span></h2>
     <p style="opacity:0;transform:translateY(20px)">We'd love to discuss how Hendrick Automotive Group can become part of this story.</p>
-    <div style="opacity:0;transform:translateY(20px)">
-      <a href="mailto:info@bilusoccer.com" class="btn btn-g">Start The Conversation</a>
+    <div class="steps">
+      <div class="step"><div class="sn">01</div><div class="st">Intro Conversation</div><div class="sd">A short call to understand Hendrick's goals and priorities.</div></div>
+      <div class="step"><div class="sn">02</div><div class="st">Site Visit</div><div class="sd">Walk the Ladson property and see the vision on the ground.</div></div>
+      <div class="step"><div class="sn">03</div><div class="st">Tailored Package</div><div class="sd">A partnership proposal built around what matters to your brand.</div></div>
+    </div>
+    <div id="ctaBtns" style="opacity:0;transform:translateY(20px)">
+      <a href="mailto:info@bilusoccer.com?subject=BISA%20%C3%97%20Hendrick%20%E2%80%94%20Partnership" class="btn btn-g">Start The Conversation</a>
       <a href="tel:+18433049414" class="btn btn-w">(843) 304-9414</a>
     </div>
   </div>
@@ -653,57 +753,73 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
 </section>
 
 <script>
+/* ===== SAFETY NET: if animation libs fail, show all content statically ===== */
+if(typeof gsap==='undefined'||typeof ScrollTrigger==='undefined'){
+  document.documentElement.classList.add('no-anim');
+  document.querySelectorAll('[data-count]').forEach(el=>{el.textContent=(el.dataset.prefix||'')+(+el.dataset.count).toLocaleString('en-US')+(el.dataset.suffix||'');});
+  document.querySelectorAll('[data-scount]').forEach(el=>{el.textContent=el.dataset.scount+(el.dataset.suffix||'');});
+  document.querySelectorAll('.gcfill').forEach(el=>{el.style.height=el.dataset.h+'%';});
+  throw new Error('Animation libraries missing — static mode');
+}
 /* ===== PRELOADER ===== */
 (function(){
   const pre=document.getElementById('preloader'),fill=document.getElementById('plFill'),count=document.getElementById('plCount');
   if(!pre)return;
-  gsap.to('.pl-logos img, .pl-logos span, .pl-x',{opacity:1,y:0,duration:.7,stagger:.12,ease:'power3.out',delay:.2});
+  gsap.to('.pl-logos img, .pl-logos span, .pl-x',{opacity:1,y:0,duration:.5,stagger:.08,ease:'power3.out',delay:.1});
   const obj={v:0};
-  gsap.to(obj,{v:100,duration:1.8,ease:'power1.inOut',delay:.5,
+  gsap.to(obj,{v:100,duration:.9,ease:'power1.inOut',delay:.25,
     onUpdate:()=>{const n=Math.round(obj.v);count.textContent=n;fill.style.width=n+'%';},
-    onComplete:()=>{gsap.to(pre,{yPercent:-100,duration:1,ease:'power4.inOut',delay:.2,
+    onComplete:()=>{gsap.to(pre,{yPercent:-100,duration:.8,ease:'power4.inOut',delay:.1,
       onComplete:()=>{pre.style.display='none';if(window.__startHero)window.__startHero();}});}});
 })();
 
-/* ===== CUSTOM CURSOR ===== */
-(function(){
-  if(window.matchMedia('(pointer:coarse)').matches)return;
-  const cur=document.getElementById('cursor'),txt=document.getElementById('cursorTxt');
-  if(!cur)return;
-  let mx=0,my=0,cx=0,cy=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-  (function loop(){cx+=(mx-cx)*.18;cy+=(my-cy)*.18;cur.style.transform='translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';requestAnimationFrame(loop);})();
-  const setH=l=>{cur.classList.add('hover');txt.textContent=l||'';},clrH=()=>{cur.classList.remove('hover');txt.textContent='';};
-  document.querySelectorAll('a,button,.tier').forEach(el=>{
-    let lbl=el.classList.contains('tier')?'Select':(el.classList.contains('btn-g')?'Let\u2019s Talk':'');
-    el.addEventListener('mouseenter',()=>setH(lbl));el.addEventListener('mouseleave',clrH);
-  });
-})();
-
+let lenis=null;
 if(typeof Lenis!=='undefined'){
-  const lenis=new Lenis({duration:1.5,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),lerp:.08,smoothWheel:true});
+  lenis=new Lenis({duration:1.5,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),lerp:.08,smoothWheel:true});
   requestAnimationFrame(function raf(t){lenis.raf(t);requestAnimationFrame(raf);});
   if(typeof ScrollTrigger!=='undefined')lenis.on('scroll',ScrollTrigger.update);
   gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
 }
 gsap.registerPlugin(ScrollTrigger);
 
+/* ===== NAV: anchor scroll, solid on scroll, active link ===== */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(!t)return;
+    e.preventDefault();
+    if(lenis)lenis.scrollTo(t,{offset:a.getAttribute('href')==='#top'?0:-60});else t.scrollIntoView({behavior:'smooth'});
+  });
+});
+const nav=document.getElementById('nav');
+ScrollTrigger.create({start:80,end:'max',onToggle:self=>nav.classList.toggle('solid',self.isActive)});
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  const sec=document.querySelector(a.getAttribute('href'));
+  if(sec)ScrollTrigger.create({trigger:sec,start:'top 50%',end:'bottom 50%',onToggle:self=>a.classList.toggle('on',self.isActive)});
+});
+
 gsap.to('.g1',{x:80,y:60,duration:18,repeat:-1,yoyo:true,ease:'sine.inOut'});
 gsap.to('.g2',{x:-70,y:-50,duration:22,repeat:-1,yoyo:true,ease:'sine.inOut'});
 
-/* cursor glow */
-const cg=document.getElementById('cursorGlow');
-document.addEventListener('mousemove',e=>{cg.style.left=e.clientX+'px';cg.style.top=e.clientY+'px';});
-
-/* particles */
+/* ===== PRESENTATION MODE: keyboard / clicker jumps section to section ===== */
 (function(){
-  const pc=document.getElementById('particles');
-  for(let i=0;i<28;i++){
-    const p=document.createElement('div');p.className='particle';
-    p.style.left=Math.random()*100+'%';p.style.top=Math.random()*100+'%';pc.appendChild(p);
-    gsap.to(p,{y:'-='+(60+Math.random()*120),x:'+='+(Math.random()*60-30),opacity:0,duration:8+Math.random()*12,repeat:-1,delay:Math.random()*8,ease:'none',
-      onRepeat:function(){gsap.set(p,{y:0,x:0,opacity:.14,left:Math.random()*100+'%',top:Math.random()*100+'%'});}});
-  }
+  const stops=['#top','#who','#champBreak','#vision','#impact','#social','#glance','#fieldBreak','#invest','#contact'].map(s=>document.querySelector(s)).filter(Boolean);
+  const NEXT=['ArrowDown','ArrowRight','PageDown',' '],PREV=['ArrowUp','ArrowLeft','PageUp'];
+  const topOf=el=>el.getBoundingClientRect().top+window.scrollY;
+  document.addEventListener('keydown',e=>{
+    if(e.target.closest('input,textarea,select')||e.metaKey||e.ctrlKey||e.altKey)return;
+    const dir=NEXT.includes(e.key)&&!e.shiftKey?1:(PREV.includes(e.key)||(e.key===' '&&e.shiftKey)?-1:0);
+    if(!dir)return;
+    e.preventDefault();
+    const y=window.scrollY+62;
+    const target=dir>0?stops.find(s=>topOf(s)>y+8):[...stops].reverse().find(s=>topOf(s)<y-8);
+    const page=window.innerHeight*.8;
+    let dest;
+    if(dir>0)dest=(!target||topOf(target)-y>window.innerHeight)?window.scrollY+page:topOf(target)-60;
+    else dest=(!target||y-topOf(target)>window.innerHeight)?window.scrollY-page:(target.id==='top'?0:topOf(target)-60);
+    dest=Math.max(0,dest);
+    if(lenis)lenis.scrollTo(dest,{duration:1.1});else window.scrollTo({top:dest,behavior:'smooth'});
+  });
 })();
 
 /* ===== HERO (paused, triggered by preloader) ===== */
@@ -726,6 +842,12 @@ function revealSection(labelId,h2sel){
   if(labelId)gsap.to('#'+labelId,{opacity:1,x:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'#'+labelId,start:'top 88%',once:true}});
   gsap.utils.toArray(h2sel+' .lh>span').forEach((el,i)=>{gsap.to(el,{y:0,duration:1.1,delay:i*.1,ease:'power4.out',scrollTrigger:{trigger:h2sel,start:'top 85%',once:true}});});
 }
+
+/* AT A GLANCE */
+revealSection('glLabel','.glance h2');
+gsap.to('.glance-intro',{opacity:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.glance-intro',start:'top 88%',once:true}});
+gsap.from('.gl',{opacity:0,y:24,duration:.7,stagger:.08,ease:'power3.out',scrollTrigger:{trigger:'.glance-grid',start:'top 85%',once:true}});
+gsap.to('.ask',{opacity:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.ask',start:'top 90%',once:true}});
 
 /* WHO */
 revealSection('whoLabel','.who-title');
@@ -822,17 +944,20 @@ gsap.utils.toArray('[data-scount]').forEach(el=>{
 revealSection('invLabel','.invest h2');
 gsap.to('.invest .ib',{opacity:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.invest .ib',start:'top 88%',once:true}});
 gsap.utils.toArray('.tier').forEach((t,i)=>{const dir=i===0?-60:(i===2?60:0);gsap.from(t,{opacity:0,x:dir,y:dir===0?40:0,scale:.95,duration:.9,delay:i*.14,ease:'power3.out',scrollTrigger:{trigger:'.tiers',start:'top 82%',once:true}});});
+gsap.to('.tiers-note',{opacity:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.tiers-note',start:'top 92%',once:true}});
 
 /* CTA */
 gsap.to('.cta .label',{opacity:1,duration:.6,ease:'power3.out',scrollTrigger:{trigger:'.cta',start:'top 75%',once:true}});
 gsap.utils.toArray('.cta h2 .lh>span').forEach((el,i)=>{gsap.to(el,{y:0,duration:1.1,delay:i*.12,ease:'power4.out',scrollTrigger:{trigger:'.cta h2',start:'top 80%',once:true}});});
 gsap.to('.cta p',{opacity:1,y:0,duration:.8,delay:.2,ease:'power3.out',scrollTrigger:{trigger:'.cta p',start:'top 88%',once:true}});
-gsap.to('.cta p+div',{opacity:1,y:0,duration:.7,delay:.3,ease:'back.out(2)',scrollTrigger:{trigger:'.cta p+div',start:'top 92%',once:true}});
+gsap.from('.step',{opacity:0,y:30,duration:.7,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:'.steps',start:'top 88%',once:true}});
+gsap.to('#ctaBtns',{opacity:1,y:0,duration:.7,delay:.3,ease:'back.out(2)',scrollTrigger:{trigger:'#ctaBtns',start:'top 95%',once:true}});
 
 /* progress + index */
 gsap.to('#prog',{width:'100%',ease:'none',scrollTrigger:{trigger:document.body,start:'top top',end:'bottom bottom',scrub:true}});
 gsap.utils.toArray('section[data-idx]').forEach(sec=>{
   ScrollTrigger.create({trigger:sec,start:'top 50%',end:'bottom 50%',onToggle:self=>{if(self.isActive){document.getElementById('sidx').innerHTML='<b>'+sec.getAttribute('data-idx').padStart(2,'0')+'</b> / 07';}}});
+ScrollTrigger.create({trigger:'#who',start:'top 60%',onEnter:()=>gsap.to('#sidx',{opacity:1,duration:.4}),onLeaveBack:()=>gsap.to('#sidx',{opacity:0,duration:.3})});
 });
 
 /* FLUID SCROLL LAYER */
