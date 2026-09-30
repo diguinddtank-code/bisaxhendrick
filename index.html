@@ -189,10 +189,19 @@ section::before{content:'';position:absolute;top:-1px;left:0;right:0;height:140p
 @keyframes champShine{0%,55%{background-position:100% 0}85%,100%{background-position:0% 0}}
 .champ-h2{font-size:clamp(1.5rem,3.4vw,2.8rem);color:var(--lt);text-shadow:0 4px 24px rgba(0,0,0,.6)}
 @media(max-width:768px){
-  .champ{height:88vh;min-height:520px}
-  .champ-img{object-position:center 20%}
-  .champ-kicker{gap:10px;letter-spacing:.22em}
-  .champ-big{font-size:17vw}
+  /* mobile: image becomes a top banner that fades into the dark content below */
+  .champ{height:auto;min-height:0;display:block}
+  .champ-media{bottom:auto;height:min(78vw,420px)}
+  .champ-img{object-position:center 30%}
+  .champ-ov{background:linear-gradient(to bottom,var(--dk) 0%,rgba(7,7,7,.05) 12%,rgba(7,7,7,.1) min(40vw,215px),rgba(7,7,7,.8) min(64vw,345px),var(--dk) min(78vw,420px),var(--dk) 100%)}
+  .champ-rays{bottom:auto;top:min(40vw,215px);width:170vmax;height:170vmax;transform:translate(-50%,-50%);animation:none;opacity:.4}
+  .champ-content{padding:min(50vw,270px) 16px 72px}
+  .champ-logo{height:150px;margin-bottom:26px}
+  .champ-logo::before{width:260%;height:190%}
+  .champ-kicker{gap:12px;letter-spacing:.22em}
+  .champ-big{white-space:normal;font-size:23vw;line-height:.84;margin:16px 0 20px}
+  .champ-big span{display:block}
+  .champ-h2{font-size:clamp(1.35rem,6.4vw,1.8rem);line-height:1.05;max-width:320px;margin:0 auto;text-wrap:balance}
 }
 
 /* ===== VISION ===== */
@@ -525,7 +534,7 @@ footer .fl{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.1em;color:v
     <div class="champ-kicker">
       <span class="kl"></span><span class="us-flag" role="img" aria-label="United States flag"></span><span class="kt">U15</span><span class="kl"></span>
     </div>
-    <div class="champ-big" aria-label="State Champions">State Champions</div>
+    <div class="champ-big" aria-label="State Champions">State <span>Champions</span></div>
     <h2 class="champ-h2"><span class="lh"><span>The Next Generation Is Already <em>Winning.</em></span></span></h2>
   </div>
 </section>
@@ -949,7 +958,7 @@ gsap.utils.toArray('.cin-break').forEach(sec=>{
     .add(()=>logo.classList.add('shine'),.9)
     .to(kls,{scaleX:1,duration:.8,ease:'power3.out'},.5)
     .to(kick,{opacity:1,y:0,duration:.6,stagger:.1,ease:'power2.out'},.6)
-    .to(big,{clipPath:'inset(0 0% 0 0%)',scale:1,duration:1.2,ease:'power4.out'},.8)
+    .to(big,{clipPath:'inset(0 0% 0 0%)',scale:1,duration:1.2,ease:'power4.out',onComplete:()=>gsap.set(big,{clearProps:'clipPath,transform'})},.8)
     .to(sec.querySelectorAll('.champ-h2 .lh>span'),{y:0,duration:1,ease:'power4.out'},1.3)
     .add(()=>big.classList.add('shine'),2);
   ScrollTrigger.create({trigger:sec,start:'top 45%',once:true,onEnter:()=>tl.play()});
